@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-void trataU(char *linha);
-void trataD(char *linha);
-int trataQuit(char *linha);
+void trataComando(char *linha, char* comando);
+int trataSaida(char *linha, char *comando);
 void uploadMusica(char *linha);
 void deleteMusica(char *linha);
 int main(){
@@ -10,10 +9,10 @@ int main(){
     printf(">");
     fgets(linha,30,stdin);
     cmd = linha[0];
-    while(cmd != 'q'){
+    while(trataSaida(linha, "quit")){
         switch(cmd){
-            case 'u'   : trataU(linha); break;
-            case 'd'   : trataD(linha); break;
+            case 'u'   : trataComando(linha, "upload"); break;
+            case 'd'   : trataComando(linha, "delete"); break;
             //case "view"     : viewMusica(linha);
             //case "music"    : listaMusica(linha);
             //case "create"   : criaPlaylist(linha);
@@ -21,19 +20,16 @@ int main(){
             //case "playlist" : listaPlaylist(linha);
             //case "modify"   : modificarPlaylist(linha);
             //case "destroy"  : destroiPlaylist(linha);
-            default    : "Comando invalido\n"; 
+            default    : printf("Comando invalido\n"); 
         }
         printf(">");
 		fgets(linha,30,stdin);
 		cmd = linha[0];
     }
-    if(trataQuit(linha))
-        printf("Jukebox encerrada.\n");
-    else
-        printf("Comando invalido.\n");
+    printf("Jukebox encerrada.\n");
 }
 
-void trataU(char *linha){
+void trataComando(char *linha, char* comando){
     char* newcmd;
     int i;
     for(i = 0; i < 30; i++){
@@ -42,32 +38,15 @@ void trataU(char *linha){
         else
             break;
     }
-    if(!strcmp(newcmd, "upload"))
-        uploadMusica(linha);
-    else{
-        printf("Comando invalido.\n");
-    }
-}
-
-void trataD(char *linha){
-    char* newcmd;
-    int i;
-    for(i = 0; i < 30; i++){
-        if(linha[i] != ' ')
-            newcmd[i] = linha[i];
-        else
-            break;
-    }
-    if(!strcmp(newcmd, "delete"))
-        deleteMusica(linha);
+    if(!strcmp(newcmd, comando))
+        printf("É igual filho, deu certo.\n");
     else
         printf("Comando invalido.\n");
 }
 
-int trataQuit(char *linha)
-{
-    char* newcmd;
+int trataSaida(char *linha, char *comando){
     int i;
+    char *newcmd;
     for(i = 0; i < 30; i++){
         if(linha[i] != ' ')
             newcmd[i] = linha[i];
@@ -75,9 +54,9 @@ int trataQuit(char *linha)
             break;
     }
     if(!strcmp(newcmd, "quit"))
-        return 1;
-    else
         return 0;
+    else
+        return 1;
 }
 
 void uploadMusica(char *linha){
