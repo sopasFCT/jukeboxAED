@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="dicOrdVec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="dicOrdenado.h" />
 		<Unit filename="jukebox.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -46,6 +50,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="playlist.h" />
+		<Unit filename="seqVector.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sequencia.h" />
 		<Extensions>
 			<debugger />
 		</Extensions>

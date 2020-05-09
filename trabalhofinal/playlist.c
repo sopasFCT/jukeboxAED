@@ -10,5 +10,7 @@
 struct _playlist{
     dicionario musicas;
     char       nomePlaylist[MAXNOME];
+    int        numeroMusica;
     int        duracaoPlaylist;
-}
+    int        numeroVezesTocada;
+};
