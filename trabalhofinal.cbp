@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="trabalhofinal" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/trabalhofinal" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/trabalhofinal" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="dicOrdVec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="dicOrdenado.h" />
+		<Unit filename="jukebox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jukebox.h" />
+		<Unit filename="mainJukebox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="musica.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="musica.h" />
+		<Unit filename="playlist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="playlist.h" />
+		<Unit filename="seqVector.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sequencia.h" />
+		<Extensions>
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
