@@ -39,6 +39,32 @@ int novaMusicaJukebox(jukebox j, char *nomeMusica, char *interprete, char *gener
         return 0;
 }
 
+//g
+int novaPlaylistJukebox(jukebox j, char* nomePlaylist, int numeroMusicasLimite){
+    playlist p;
+
+    p = criaPlaylist(numeroMusicasLimite, nomePlaylist);
+
+}
+
+int numeroMusicasJukebox(jukebox j){
+    return (tamanhoDicOrdenado(j -> musicas));
+}
+
+int numeroPlaylistsJukebox(jukebox j){
+    return (tamanhoSequencia(j -> playlists));
+}
+
+iterador criaIteradorNomesMusicas(jukebox j){
+    iterador myIt = iteradorChaveDicOrdenado(j -> musicas);
+    return(myIt);
+}
+
+iterador criaIteradorMusicas(jukebox j){
+    iterador myIt = iteradorDicOrdenado(j -> musicas);
+    return(myIt);
+}
+
 void apagarMusicaJukebox(jukebox j, char *nomeMusica){
     musica m = elementoDicOrdenado(p -> musicas, nomeMusica);
     if(existeElemDicOrdenado(p -> musicas, nomeMusica)){

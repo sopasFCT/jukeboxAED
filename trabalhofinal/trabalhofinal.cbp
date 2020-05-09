@@ -35,6 +35,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="dicOrdenado.h" />
+		<Unit filename="iteraVector.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="iterador.h" />
 		<Unit filename="jukebox.c">
 			<Option compilerVar="CC" />
 		</Unit>

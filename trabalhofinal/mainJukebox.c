@@ -21,12 +21,19 @@ void trataComando(char *linha, char *comando);
 int  trataSaida(char *linha, char *comando);
 char *scanAteEnter(char *string);
 char *apagarComandoLinha(char *linha);
+//funcoes listagem
+void totalEListagemMusicas(jukebox j);
+void listaMusicasInterprete(jukebox j)
+void listaMusicasGenero(jukebox j);
+void listaMusicasEmMaisPlaylists(jukebox j);
+void listaMusicasMaisTocadas(jukebox j);
+void criaIteradorTop(jukebox j, int top);
 //funcoes tadss
 void uploadMusica(jukebox j, char *linha);
 void deleteMusica(jukebox j, char *linha);
 void viewMusica(jukebox j, char *linha);
 void listaMusica(jukebox j, char *linha);
-void criaPlaylist(char *linha, int numeroMusicas);
+void criaPlaylist(jukebox j, char *linha, int numeroMusicas, int tempoDuracao);
 void tocaPlaylist(char *linha);
 void listaPlaylist(char *linha);
 void modificarPlaylist(char *linha);
@@ -211,19 +218,140 @@ void viewMusica(jukebox j, char *linha){
 }
 
 void listaMusica(jukebox j, char *linha){
-    char *comando = apagarComandoLinha(linha);
+    char *comando;
+    strcpy(comando, apagarComandoLinha(linha));
     if(strlen(comando) != 1))
         printf("Dados invalidos.\n");
     switch(comando[0]){
-        case 'a' : totalEListagemMusicas(); break;
-        case 'i' : listaMusicasInterprete(); break;
-        case 'g' : listaMusicasGenero(); break;
-        case 'p' : listaMusicasEmMaisPlaylists(); break;
-        case 't' : listaMusicasMaisTocadas(); break;
+        case 'a' : totalEListagemMusicas(j); break;
+        case 'i' : listaMusicasInterprete(j); break;
+        case 'g' : listaMusicasGenero(j); break;
+        case 'p' : listaMusicasEmMaisPlaylists(j); break;
+        case 't' : listaMusicasMaisTocadas(j); break;
+        default  : printf("Dados invalidos.\n");
     }
 }
 
-void criaPlaylist(char *linha, int numeroMusicas){
+//funcoes listar
+void totalEListagemMusicas(jukebox j){
+    char *nomeMusica = malloc(sizeof(char) * MAXNOME);
+    int contaMusicas = 0;
+    iterador myIt = criaIteradorNomesMusicas(j);
+    while(temSeguinteIterador(myIt))
+    {
+        strcpy(nomeMusica, seguinteIterador(myIt));
+        contaMusicas++;
+        printf("%s\n.", nomeMusica);
+    }
+    printf("Total de musicas %d.\n", contaMusicas);
+}
+
+void listaMusicasInterprete(jukebox j){
+    musica m;
+    char *autorMusica = malloc(sizeof(char) * MAXNOME);
+    scanf("%s", autorMusica);
+    if(!numeroMusicasJukebox(j))
+        printf("Sem musicas.\n");
+    int contaInterprete = 0;
+    iterador myIt = criaIteradorMusicas(j);
+    while(temSeguinteIterador(myIt)){
+        m = (musica)seguinteIterador(myIt);
+        if(!strcmp(autorMusica, interpreteMusica(m)))
+        {
+            contaInterprete++;
+            printf("%s\n", nomeMusica(m));
+        }
+    }
+    if(!contaInterprete)
+        printf("Autor desconhecido.\n");
+}
+
+void listaMusicasGenero(jukebox j){
+    musica m;
+    char *generoMusica = malloc(sizeof(char) * MAXGENERO);
+    scanf("%s", generoMusica);
+    if(!numeroMusicasJukebox(j))
+        printf("Sem musicas.\n");
+    int contaGenero = 0;
+    iterador myIt = criaIteradorMusicas(j);
+    while(temSeguinteIterador(myIt)){
+        m = (musica)seguinteIterador(myIt);
+        if(!strcmp(generoMusica, generoMusica(m)))
+        {
+            contaGenero++;
+            printf("%s\n", generoMusica(m));
+        }
+    }
+    if(!contaGenero)
+        printf("Genero desconhecido.\n");
+}
+
+void listaMusicasEmMaisPlaylists(jukebox j){
+    musica m;
+    int maxPlaylists = 0;
+    if(!numeroMusicasJukebox(j))
+        printf("Sem musicas.\n");
+    if(!numeroPlaylistsJukebox(j))
+        printf("Sem playlists.\n");
+    iterador myIt = criaIteradorMusicas(j);
+    while(temSeguinteIterador(myIt)){
+        m = (musica)seguinteIterador(myIt);
+        if(numeroPlaylistsMusica(m) > maxPlaylists)
+            maxPlaylists = numeroPlaylistsMusica(m);
+    }
+    myIt = criaIteradorMusicas(j); //tag
+    while(temSeguinteIterador(myIt)){
+        m = (musica)seguinteIterador(myIt);
+        if(numeroPlaylistsMusica(m) == maxPlaylists)
+            printf("%s\n", nomeMusica(m));
+    }
+    printf("Em %d playlists.\n", maxPlaylists);
+}
+
+
+void listaMusicasMaisTocadas(jukebox j){
+    musica m;
+    int top3 = 0, top2 = 0, top1 = 0; //top 3 e a terceira musica que foi tocada mais vezes
+    if(!numeroMusicasJukebox(j))
+        printf("Sem musicas.\n");
+    if(!numeroPlaylistsJukebox(j))
+        printf("Sem playlists.\n");
+    iterador myIt = criaIteradorMusicas(j);
+    while(temSeguinteIterador(myIt)){
+        m = (musica)seguinteIterador(myIt);
+        if(numeroVezesTocada(m) > top1)
+            top1 = numeroVezesTocada(m);
+        else if((numeroVezesTocada(m) > top2) && (numeroVezesTocada(m) < top1)) //testar
+            top2 = numeroVezesTocada(m);
+        else if((numeroVezesTocada(m) > top3) && (numeroVezesTocada(m) < top2))
+            top3 = numeroVezesTocada(m);
+    }
+    criaIteradorTop(j, top1);
+    criaIteradorTop(j, top2);
+    criaIteradorTop(j, top3);
+    }
+}
+
+void criaIteradorTop(jukebox j, int top){
+    myIt = criaIteradorMusicas(j);
+    while(temSeguinteIterador(myIt)){
+        m = (musica)seguinteIterador(myIt);
+        if(numeroVezesTocada(m) == top)
+            printf("%s tocada %d vezes.\n", nomeMusica(m), top);
+}
+//**************
+
+void criaPlaylist(jukebox j, char *linha, int numeroMusicas, int tempoDuracao){
+    char *comando;
+    int numeroMusicasLimite;
+    if(sscanf(linha, "%s %d", comando, &numeroMusicasLimite) != 2 || numeroMusicasLimite < 1)
+        printf("Dados invalidos.\n");
+    if(numeroMusicasLimite > numeroMusicas){
+        printf("Playlist excedeu dimensao.\n");
+        printf("Playlist nao criada.\n");
+    }
+    scanf("%s", nomePlaylist); //nao da para usar scan ate enter porque nao se quer mandar a linha mas sim a proxima
+    nomePlaylist[strlen(nomePlaylist) - 1] = '\0';
 
 }
 
