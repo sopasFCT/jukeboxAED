@@ -9,9 +9,10 @@
 #include "musica.h"
 
 //constantes
-#define MAXLINHA 30
-#define MAXNOME   100
-#define MAXGENERO 30
+#define MAXCMD     10
+#define MAXLINHA   30
+#define MAXNOME    100
+#define MAXGENERO  30
 
 //prototipos
 //funcoes menu
@@ -34,9 +35,9 @@ void deleteMusica(jukebox j, char *linha);
 void viewMusica(jukebox j, char *linha);
 void listaMusica(jukebox j, char *linha);
 void criaPlaylist(jukebox j, char *linha, int numeroMusicas, int tempoDuracao);
-void tocaPlaylist(char *linha);
-void listaPlaylist(char *linha);
-void modificarPlaylist(char *linha);
+void tocaPlaylist(jukebox j, char *linha);
+void listaPlaylist(jukebox j, char *linha);
+void modificarPlaylist(jukebox j, char *linha);
 void destroiPlaylist(char *linha);
 
 int main(){
@@ -341,30 +342,120 @@ void criaIteradorTop(jukebox j, int top){
 }
 //**************
 
-void criaPlaylist(jukebox j, char *linha, int numeroMusicas, int tempoDuracao){
-    char *comando;
+void criaPlaylist(jukebox j, char *linha, int numeroMusicas, int tempoDuracaoMaximoPlaylist){
+    char comando[MAXCMD];
+    int i = 0;
     int numeroMusicasLimite;
-    if(sscanf(linha, "%s %d", comando, &numeroMusicasLimite) != 2 || numeroMusicasLimite < 1)
+    char nomeMusicaPlaylist[MAXNOME];
+    char nomePlaylist[MAXNOME];
+    playlist p;
+    musica m;
+    if(sscanf(linha, "%s %d", comando, &numeroMusicasLimite) != 2 || numeroMusicasLimite < 1){
         printf("Dados invalidos.\n");
+        return;
+    }
+    fgets(nomePlaylist, MAXNOME, stdin);
+    nomePlaylist[strlen(nomePlaylist - 1] = '\0';
     if(numeroMusicasLimite > numeroMusicas){
         printf("Playlist excedeu dimensao.\n");
         printf("Playlist nao criada.\n");
+        return;
     }
-    scanf("%s", nomePlaylist); //nao da para usar scan ate enter porque nao se quer mandar a linha mas sim a proxima
-    nomePlaylist[strlen(nomePlaylist) - 1] = '\0';
-
+    p = criaPlaylistJukebox(j, nomePlaylist, numeroMusicasLimite);
+    if(p == NULL)){
+        printf("Playlist ja existente.\n");
+        return;
+    }
+    //adicionar musicas a playlist recebida em p
+    while(i < numeroMusicasLimite){
+        fgets(nomeMusicaPlaylist, MAXNOME, stdin);
+        nomeMusicaPlaylist[strlen(nomeMusicaPlaylist) - 1] = '\0';.
+        //verificar se a musica existe
+        if(!existeMusicaJukebox(j, nomeMusicaPlaylist)){
+            printf("Musica inexistente.\n");
+            printf("Playlist nao criada.\n");
+            return; //sai do while
+        }
+        m = retornaMusicaJukebox(j, nomeMusicaPlaylist); //vai ficar com a musica que corresponde ao nome para adicionar a playlist
+        if(!adicionaMusicaPlaylist(p, m, nomeMusicaPlaylist, tempoDuracaoMaximoPlaylist)){
+            printf("Playlist excedeu tempo.\n");
+            printf("Playlist nao criada.\n");
+            return;
+        }
+        i++;
+    }
+    printf("Playlist %s criada.\n", nomePlaylist);
 }
 
-void tocaPlaylist(char *linha){
-
+void tocaPlaylist(jukebox j, char *linha){
+    playlist p;
+    char comando[MAXCMD];
+    char nomePlaylist[MAXNOME];
+    int tamanhoPlaylist;
+    if(sscanf(linha, "%s %s", comando, nomePlaylist) != 2){
+        printf("Dados invalidos.\n");
+        return; //baza
+    }
+    p = devolvePlaylistJukebox(j, nomePlaylist);
+    if(p == NULL){
+        printf("Playlist inexistente.\n");
+        return;
+    }
+    else{
+        tamanhoPlaylist = retornaNumeroMusicasPlaylist(p);
+        if(!tamanhoPlaylist){
+            printf("Playlist vazia");
+            return;
+        }
+        else{
+            printf("Playlist %s tem %d musicas e %d segundos", nomePlaylist, tamanhoPlaylist, retornaDuracaoPlaylist(p));
+            incrementarNumeroVezesTocada(p);
+            return;
+        }
+    }
 }
 
-void listaPlaylist(char *linha, ){
-
+void listaPlaylist(jukebox j, char *linha){
+    char comando[MAXCMD];
+    char nomePlaylist[MAXNOME];
+    iterador myIt;
+    playlist p;
+    musica m;
+    if(sscanf(linha, "%s %s", comando, nomePlaylist) != 2){ //so le ate o espaco
+        printf("Dados invalidos.\n");
+        return; //baza
+    }
+    p = devolvePlaylistJukebox(j, nomePlaylist);
+    if(p == NULL){
+        printf("Playlist inexistente.\n");
+        return;
+    }
+    else{
+        tamanhoPlaylist = retornaNumeroMusicasPlaylist(p);
+        if(!tamanhoPlaylist){
+            printf("Playlist vazia");
+            return;
+        }
+        myIt = criaIteradorMusicasPlaylist(p);
+        while(temSeguinteIterador(myIt)){
+            m = (musica)seguinteIterador(myIt);
+            printf("%s %d\n", nomeMusica(m), duracaomusica(m));
+        }
+        printf("Tempo total %d segundos tocada %d vezes.\n", retornaDuracaoPlaylist(p), retornaNumeroVezesTocada(p));
 }
 
-void modificarPlaylist(char *linha, ){
-
+void modificarPlaylist(jukebox j, char *linha){
+    int posicao;
+    char comando, modify[MAXCMD];
+    nomePlaylist[MAXNOME];
+    if(sscanf(linha, "%s %c %d", modify, &comando, &posicao) != 3 || posicao <= 0)
+        printf("Dados invalidos.\n");
+        return;
+    fgets(nomePlaylist, MAXNOME, stdin); //ler nome playlist
+    switch(comando){
+        case 'r' : removerMusicaPlaylist(); break;
+        case 'i' : adicionaMusicaPlaylist(); break;
+    }
 }
 
 void destroiPlaylist(char *linha, ){
