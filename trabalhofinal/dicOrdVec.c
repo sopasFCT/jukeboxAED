@@ -3,9 +3,9 @@
  */
 #include <stdlib.h>
 #include "iterador.h"
-#include "dicOrdenado.h"
 #include "chaves.h"
 #include "tuplo.h"
+#include "dicOrdenado.h"
 
 struct _dicOrdenado{
 	tuplo * elems; // apontador para vector de tuplos (chave,elemento)

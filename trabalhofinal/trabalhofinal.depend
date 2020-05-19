@@ -1,0 +1,87 @@
+# depslib dependency file v1.0
+1589545809 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\chaves.c
+	<string.h>
+	"chaves.h"
+
+1589545587 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\dicordvec.c
+	<stdlib.h>
+	"iterador.h"
+	"chaves.h"
+	"tuplo.h"
+	"dicOrdenado.h"
+
+1554231684 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\iterador.h
+
+1589544527 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\dicordenado.h
+
+1589385310 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\chaves.h
+
+1589385141 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\tuplo.h
+
+1589317948 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\dicvector.c
+	<stdlib.h>
+	"iterador.h"
+	"dicionario.h"
+	"chaves.h"
+	"tuplo.h"
+
+1589317985 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\dicionario.h
+
+1554231734 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\iteravector.c
+	<stdlib.h>
+	"iterador.h"
+
+1589828891 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\musica.c
+	<stdlib.h>
+	<string.h>
+	"musica.h"
+
+1589828913 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\musica.h
+
+1587519888 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\seqvector.c
+	<stdlib.h>
+	"iterador.h"
+	"sequencia.h"
+
+1587496264 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\sequencia.h
+
+1589385022 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\tuplo.c
+	<stdlib.h>
+	<string.h>
+	"tuplo.h"
+
+1589829135 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\jukebox.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"iterador.h"
+	"chaves.h"
+	"tuplo.h"
+	"dicOrdenado.h"
+	"dicionario.h"
+	"musica.h"
+	"playlist.h"
+	"jukebox.h"
+
+1589827837 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\playlist.h
+
+1589410461 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\jukebox.h
+
+1589828921 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\playlist.c
+	<stdlib.h>
+	<string.h>
+	"iterador.h"
+	"sequencia.h"
+	"musica.h"
+	"playlist.h"
+
+1589890431 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\mainjukebox.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"iterador.h"
+	"musica.h"
+	"playlist.h"
+	"jukebox.h"
+

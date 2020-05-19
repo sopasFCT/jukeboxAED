@@ -31,10 +31,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="chaves.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="chaves.h" />
 		<Unit filename="dicOrdVec.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="dicOrdenado.h" />
+		<Unit filename="dicVector.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="dicionario.h" />
 		<Unit filename="iteraVector.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -58,6 +66,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="sequencia.h" />
+		<Unit filename="tuplo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tuplo.h" />
 		<Extensions>
 			<debugger />
 		</Extensions>
