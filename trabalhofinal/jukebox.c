@@ -103,14 +103,15 @@ iterador criaIteradorPlaylists(jukebox j){
 }
 
 int apagarMusicaJukebox(jukebox j, char *nomeMusica){
-    musica m = elementoDicOrdenado(j -> musicas, nomeMusica);
     if(existeElemDicOrdenado(j -> musicas, nomeMusica)){
-        removeElemDicOrdenado(j -> musicas, nomeMusica);
+        musica m = removeElemDicOrdenado(j -> musicas, nomeMusica);
+        if(m == NULL)
+            return 0;
+        destroiMusica(m);
         return 1;
     }
     else
         return 0;
-    destroiMusica(m);
 }
 
 musica devolveMusicaJukebox(jukebox j, char *nomeMusica){

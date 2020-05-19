@@ -62,6 +62,9 @@ void incrementarNumeroVezesTocada(playlist p){
 char* removerMusicaPlaylist(playlist p, int pos){
     musica m;
     m = removePosSequencia(p -> musicas, pos);
+    if(m == NULL)
+        return NULL;
+    p -> duracaoPlaylist = p -> duracaoPlaylist - duracaoMusica(m);
     return(nomeMusica(m));
 }
 

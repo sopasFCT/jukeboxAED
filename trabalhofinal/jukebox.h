@@ -106,4 +106,17 @@ Retorno : 0 - nao encontrou e nao destruiu
           1 - encontrou e destruiu
 ***********************************************/
 int destruirPlaylistJukebox(jukebox j, char* nomePlaylist);
+
+/***********************************************
+destroiPlaylistsEMusicas - funcao que destroi as playlists todas
+                           da jukebox e todas as musicas dentro delas
+Parametros: j - apontador para a jukebox
+***********************************************/
+void destroiPlaylistsEMusicas(jukebox j);
+
+/***********************************************
+destroiJukebox- funcao que destroi a jukebox recebida como parametro
+Parametros: j - apontador para a jukebox
+***********************************************/
+void destroiJukebox(jukebox j);
 #endif // JUKEBOX_H_INCLUDED
