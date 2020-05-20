@@ -36,6 +36,9 @@ Parametros: m - apontador para a musica
 ***********************************************/
 void incrementaNumeroVezesTocada(musica m);
 
+void incrementaNumeroPlaylistsPresente(musica m);
+void decrementaNumeroPlaylistsPresente(musica m);
+
 /***********************************************
 destroiMusica - funcao para destruir a memoria associada a tad musica
 Parametros: m - apontador para a musica

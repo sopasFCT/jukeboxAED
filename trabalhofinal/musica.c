@@ -63,6 +63,14 @@ void incrementaNumeroVezesTocada(musica m){
     m -> numeroVezesTocada = m -> numeroVezesTocada + 1;
 }
 
+void incrementaNumeroPlaylistsPresente(musica m){
+    m -> numeroPlaylists = m -> numeroPlaylists + 1;
+}
+
+void decrementaNumeroPlaylistsPresente(musica m){
+    m -> numeroPlaylists = m -> numeroPlaylists - 1;
+}
+
 void destroiMusica(musica m){
     free((musica)m);
 }

@@ -49,6 +49,17 @@ int retornaNumeroVezesTocada(playlist p){
     return(p -> numeroVezesTocada);
 }
 
+int existeMusicaPlaylist(playlist p, musica m){
+    iterador myIt = criaIteradorMusicasPlaylist(p);
+    musica musicaSequencia;
+    while(temSeguinteIterador(myIt)){
+        musicaSequencia = (musica)seguinteIterador(myIt);
+        if(!strcmp(nomeMusica(musicaSequencia), nomeMusica(m)))
+            return 1;
+    }
+    return 0;
+}
+
 void incrementarNumeroVezesTocada(playlist p){
     musica m;
     p -> numeroVezesTocada = p -> numeroVezesTocada + 1;
@@ -68,6 +79,8 @@ char* removerMusicaPlaylist(playlist p, int pos){
     m = removePosSequencia(p -> musicas, pos);
     if(m == NULL)
         return NULL;
+    if(!existeMusicaPlaylist(p, m))
+        decrementaNumeroPlaylistsPresente(m);
     p -> duracaoPlaylist = p -> duracaoPlaylist - duracaoMusica(m);
     return(nomeMusica(m));
 }
@@ -85,6 +98,8 @@ int adicionaMusicaPlaylist(playlist p, musica m, int pos, char* nomeMusica, int 
     if(tempoCorrentePlaylist > tempoMaximo)
         return 1; //nao consegue adicionar pois o tempo da playlist excede o tempo maximo permitido
     else{
+        if(!existeMusicaPlaylist(p, m))
+            incrementaNumeroPlaylistsPresente(m);
         p -> duracaoPlaylist = tempoCorrentePlaylist;
         adicionaPosSequencia(p -> musicas, m, pos);
         return 2; //deu certo equipa

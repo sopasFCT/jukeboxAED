@@ -31,12 +31,12 @@
 	<stdlib.h>
 	"iterador.h"
 
-1589828891 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\musica.c
+1589995611 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\musica.c
 	<stdlib.h>
 	<string.h>
 	"musica.h"
 
-1589828913 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\musica.h
+1589995679 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\musica.h
 
 1587519888 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\seqvector.c
 	<stdlib.h>
@@ -50,7 +50,7 @@
 	<string.h>
 	"tuplo.h"
 
-1589917190 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\jukebox.c
+1589919355 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\jukebox.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -63,19 +63,20 @@
 	"playlist.h"
 	"jukebox.h"
 
-1589910941 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\playlist.h
+1589992560 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\playlist.h
 
 1589892234 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\jukebox.h
 
-1589917227 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\playlist.c
+1589995648 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\playlist.c
 	<stdlib.h>
 	<string.h>
+	<stdio.h>
 	"iterador.h"
 	"sequencia.h"
 	"musica.h"
 	"playlist.h"
 
-1589919043 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\mainjukebox.c
+1589993571 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\mainjukebox.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
