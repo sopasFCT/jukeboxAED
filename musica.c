@@ -31,6 +31,10 @@ musica criaMusica(char *nome, char *interprete, char *genero, int anoLancamento,
     return m; //dar return para usar nas outras tads
 }
 
+char *nomeMusica(musica m){
+    return(m -> nomeMusica);
+}
+
 char *interpreteMusica(musica m){
     return(m -> interpreteMusica);
 }
@@ -49,6 +53,22 @@ int duracaoMusica(musica m){
 
 int numeroVezesTocada(musica m){
     return(m -> numeroVezesTocada);
+}
+
+int numeroPlaylistsMusica(musica m){
+    return(m -> numeroPlaylists);
+}
+
+void incrementaNumeroVezesTocada(musica m){
+    m -> numeroVezesTocada = m -> numeroVezesTocada + 1;
+}
+
+void incrementaNumeroPlaylistsPresente(musica m){
+    m -> numeroPlaylists = m -> numeroPlaylists + 1;
+}
+
+void decrementaNumeroPlaylistsPresente(musica m){
+    m -> numeroPlaylists = m -> numeroPlaylists - 1;
 }
 
 void destroiMusica(musica m){
