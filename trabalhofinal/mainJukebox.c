@@ -244,8 +244,10 @@ void deleteMusica(jukebox j, char *linha){
             iteraMusicas = criaIteradorMusicasPlaylist(p);
             while(temSeguinteIterador(iteraMusicas)){
                 m = (musica)seguinteIterador(iteraMusicas);
-                if(!strcmp(nomeMusica(m), nomeMusicaApagar))
+                if(!strcmp(nomeMusica(m), nomeMusicaApagar)){
                     removerMusicaPlaylist(p, i);
+                    i--;
+                }
                 i++;
             }
             destroiIterador(iteraMusicas);

@@ -73,31 +73,16 @@ void incrementarNumeroVezesTocada(playlist p){
 
 char* removerMusicaPlaylist(playlist p, int pos){
     musica m;
-    int contaVezesMusicaEmPlaylist;
-    char *nome = malloc(sizeof(char*) * MAXNOME);
     if(pos > tamanhoSequencia(p -> musicas)){
         return NULL;
     }
     m = removePosSequencia(p -> musicas, pos);
-    nome = nomeMusica(m);
-    contaVezesMusicaEmPlaylist = procuraVezesMusicaNaPlaylist(p, nome);
     if(m == NULL)
         return NULL;
     if(!existeMusicaPlaylist(p, m))
-        decrementaNumeroPlaylistsPresente(m, contaVezesMusicaEmPlaylist);
+        decrementaNumeroPlaylistsPresente(m);
     p -> duracaoPlaylist = p -> duracaoPlaylist - duracaoMusica(m);
     return(nomeMusica(m));
-}
-
-int procuraVezesMusicaNaPlaylist(playlist p, char* nomeDaMusica){
-    int contador;
-    iterador myIt = criaIteradorMusicasPlaylist(p);
-    while(temSeguinteIterador(myIt)){
-        musica m = seguinteIterador(myIt);
-        if(!strcmp(nomeDaMusica, nomeMusica(m)))
-            contador++;
-    }
-    return contador;
 }
 
 int adicionaMusicaPlaylist(playlist p, musica m, int pos, char* nomeMusica, int tempoMaximo){

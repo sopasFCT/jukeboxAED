@@ -67,8 +67,8 @@ void incrementaNumeroPlaylistsPresente(musica m){
     m -> numeroPlaylists = m -> numeroPlaylists + 1;
 }
 
-void decrementaNumeroPlaylistsPresente(musica m, int numeroVezesMusicaPlaylist){
-    m -> numeroPlaylists = m -> numeroPlaylists - numeroVezesMusicaPlaylist;
+void decrementaNumeroPlaylistsPresente(musica m){
+    m -> numeroPlaylists = m -> numeroPlaylists - 1;
 }
 
 void destroiMusica(musica m){
