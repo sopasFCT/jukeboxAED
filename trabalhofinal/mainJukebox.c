@@ -159,6 +159,7 @@ int trataSaida(char *linha, char* comando, int num){
         i++;
     }
     newcmd[i] = '\0';
+    //printf("cmd = %s\n", newcmd);
     if(!strcmp(newcmd, comando))
         return num;
     else
@@ -567,6 +568,8 @@ void adicionarMusicaPlaylist(jukebox j, playlist p, int posicao, int tempoDuraca
     int decide, decide2;
     musica m;
     decide2 = verificaCondicoesPlaylist(p, posicao);
+    fgets(nomeMusicaAdicionar, MAXNOME, stdin);
+    nomeMusicaAdicionar[strlen(nomeMusicaAdicionar) - 1] = '\0';
     if(decide2 == -1 || decide2 == 0) {
         switch(decide2){
             case -1: printf("Playlist excedeu dimensao.\n"); break;
@@ -574,8 +577,6 @@ void adicionarMusicaPlaylist(jukebox j, playlist p, int posicao, int tempoDuraca
         }
         return;
     }
-    fgets(nomeMusicaAdicionar, MAXNOME, stdin);
-    nomeMusicaAdicionar[strlen(nomeMusicaAdicionar) - 1] = '\0';
     m = devolveMusicaJukebox(j, nomeMusicaAdicionar);
     if(m == NULL){
         printf("Musica inexistente.\n");

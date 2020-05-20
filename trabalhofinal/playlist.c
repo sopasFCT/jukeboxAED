@@ -96,6 +96,7 @@ int verificaCondicoesPlaylist(playlist p, int pos){
         return -1; //nao consegue adicionar outra musica pois excede o numero musicas permitido
     if(pos > tamanhoSequencia(p -> musicas) + 2)
         return 0; //posicao nao existe
+    return 1;
 }
 
 iterador criaIteradorMusicasPlaylist(playlist p){
