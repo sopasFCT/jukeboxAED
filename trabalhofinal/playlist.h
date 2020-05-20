@@ -69,7 +69,7 @@ Retorno: 0 - nao consegue adicionar outra musica pois excede o tempo maximo
 ***********************************************/
 int adicionaMusicaPlaylist(playlist p, musica m, int pos, char* nomeMusica, int tempoMaximo);
 
-
+int verificaCondicoesPlaylist(playlist p, int pos);
 /***********************************************
 criaIterador - funcao para criar iterador com as musicas de
                determinada playlist

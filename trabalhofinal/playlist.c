@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 #include "iterador.h"
 #include "sequencia.h"
@@ -61,6 +62,9 @@ void incrementarNumeroVezesTocada(playlist p){
 
 char* removerMusicaPlaylist(playlist p, int pos){
     musica m;
+    if(pos > tamanhoSequencia(p -> musicas)){
+        return NULL;
+    }
     m = removePosSequencia(p -> musicas, pos);
     if(m == NULL)
         return NULL;
@@ -70,8 +74,13 @@ char* removerMusicaPlaylist(playlist p, int pos){
 
 int adicionaMusicaPlaylist(playlist p, musica m, int pos, char* nomeMusica, int tempoMaximo){
     int tempoCorrentePlaylist;
-    if(tamanhoSequencia(p -> musicas) + 1 > p -> capacidade) //se a alteracao aqui altera
-        return 0; //nao consegue adicionar outra musica pois excede o numero musicas permitido
+//    printf("pos = %d\n", pos);
+//    printf("tamanho = %d\n", tamanhoSequencia(p -> musicas));
+/*    if(tamanhoSequencia(p -> musicas) + 1 > p -> capacidade)  //se a alteracao aqui altera
+        return -1; //nao consegue adicionar outra musica pois excede o numero musicas permitido
+    if(pos > tamanhoSequencia(p -> musicas) + 2)
+        return 0; //posicao nao existe
+*/
     tempoCorrentePlaylist = p -> duracaoPlaylist + duracaoMusica(m);
     if(tempoCorrentePlaylist > tempoMaximo)
         return 1; //nao consegue adicionar pois o tempo da playlist excede o tempo maximo permitido
@@ -80,6 +89,13 @@ int adicionaMusicaPlaylist(playlist p, musica m, int pos, char* nomeMusica, int 
         adicionaPosSequencia(p -> musicas, m, pos);
         return 2; //deu certo equipa
     }
+}
+
+int verificaCondicoesPlaylist(playlist p, int pos){
+    if(tamanhoSequencia(p -> musicas) + 1 > p -> capacidade)  //se a alteracao aqui altera
+        return -1; //nao consegue adicionar outra musica pois excede o numero musicas permitido
+    if(pos > tamanhoSequencia(p -> musicas) + 2)
+        return 0; //posicao nao existe
 }
 
 iterador criaIteradorMusicasPlaylist(playlist p){
