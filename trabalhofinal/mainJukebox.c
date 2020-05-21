@@ -281,6 +281,7 @@ void viewMusica(jukebox j, char *linha){
         printf("%d\n", anoLancamentoMusica(m));
         printf("%d\n", duracaoMusica(m));
         printf("Tocada %d vezes.\n", numeroVezesTocada(m));
+        //printf("Esta em %d playlists\n", numeroPlaylistsMusica(m));
     }
 }
 
@@ -403,12 +404,18 @@ void listaMusicasMaisTocadas(jukebox j){
     iterador myIt = criaIteradorMusicas(j);
     while(temSeguinteIterador(myIt)){
         m = (musica)seguinteIterador(myIt);
-        if(numeroVezesTocada(m) > top1)
+        if(numeroVezesTocada(m) > top1){
+            top3 = top2;
+            top2 = top1;
             top1 = numeroVezesTocada(m);
-        else if((numeroVezesTocada(m) > top2) && (numeroVezesTocada(m) < top1)) //testar
+        }
+        else if((numeroVezesTocada(m) > top2) && (numeroVezesTocada(m) < top1)){ //testar
+            top3 = top2;
             top2 = numeroVezesTocada(m);
-        else if((numeroVezesTocada(m) > top3) && (numeroVezesTocada(m) < top2))
+        }
+        else if((numeroVezesTocada(m) > top3) && (numeroVezesTocada(m) < top2)){
             top3 = numeroVezesTocada(m);
+        }
     }
     criaIteradorTop(j, top1);
     criaIteradorTop(j, top2);
@@ -440,13 +447,13 @@ void createPlaylist(jukebox j, char *linha, int numeroMusicas, int tempoDuracaoM
         printf("Dados invalidos.\n");
         return;
     }
+    fgets(nomePlaylist, MAXNOME, stdin);
+    nomePlaylist[strlen(nomePlaylist) - 1] = '\0';
     if(numeroMusicasLimite > numeroMusicas){
         printf("Playlist excedeu dimensao.\n");
         printf("Playlist nao criada.\n");
         return;
     }
-    fgets(nomePlaylist, MAXNOME, stdin);
-    nomePlaylist[strlen(nomePlaylist) - 1] = '\0';
     p = criaPlaylistJukebox(j, nomePlaylist, numeroMusicas);
     if(p == NULL){
         printf("Playlist ja existente.\n");
@@ -570,15 +577,16 @@ void adicionarMusicaPlaylist(jukebox j, playlist p, int posicao, int tempoDuraca
     int decide, decide2;
     musica m;
     decide2 = verificaCondicoesPlaylist(p, posicao);
-    fgets(nomeMusicaAdicionar, MAXNOME, stdin);
-    nomeMusicaAdicionar[strlen(nomeMusicaAdicionar) - 1] = '\0';
     if(decide2 == -1 || decide2 == 0) {
         switch(decide2){
-            case -1: printf("Playlist excedeu dimensao.\n"); break;
+            //case -1: printf("Playlist excedeu dimensao.\n"); break;
             case 0 : printf("Posicao invalida.\n"); break;
+            case 1 : break;
         }
         return;
     }
+    fgets(nomeMusicaAdicionar, MAXNOME, stdin);
+    nomeMusicaAdicionar[strlen(nomeMusicaAdicionar) - 1] = '\0';
     m = devolveMusicaJukebox(j, nomeMusicaAdicionar);
     if(m == NULL){
         printf("Musica inexistente.\n");
@@ -587,7 +595,8 @@ void adicionarMusicaPlaylist(jukebox j, playlist p, int posicao, int tempoDuraca
     decide = adicionaMusicaPlaylist(p, m, posicao, nomeMusicaAdicionar, tempoDuracaoMaximoPlaylist);
     switch(decide){
 //        case -1: printf("Playlist excedeu dimensao.\n"); break;
-//        case 0 : printf("Posicao invalida.\n"); break;
+//        case 0 : printf("Posicao invalida.\n"); break;.
+        case -1: printf("Playlist excedeu dimensao.\n"); break;
         case 1 : printf("Playlist excedeu tempo.\n"); break;
         case 2 : printf("Musica adicionada.\n"); break;
     }

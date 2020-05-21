@@ -130,9 +130,27 @@ playlist devolvePlaylistJukebox(jukebox j, char *nomePlaylist){
 
 int destruirPlaylistJukebox(jukebox j, char* nomePlaylist){ //ver se precisa receber playlist parametro
     playlist p = removeElemDicionario(j -> playlists, nomePlaylist);
+    //musica m;
+    int i = 1;
+    char *nome;
     if(p == NULL)
         return 0;
-    destroiPlaylist(p);
+    //iterador myIt = criaIteradorMusicasPlaylist(p);
+    while(nome != NULL){
+        nome = removerMusicaPlaylist(p, i);
+        //m = (musica)seguinteIterador(myIt);
+        /*if(removerMusicaPlaylist(p, i) != NULL)
+            i--;*/
+        /*if(existeMusicaPlaylist(p, m) == 0){ && retornaNumeroMusicasPlaylist(p)!= 0
+            decrementaNumeroPlaylistsPresente(m);
+            printf("decrementa a %s\n", nomeMusica(m));
+            if(numeroPlaylistsMusica(m) < 0)
+                incrementaNumeroPlaylistsPresente(m);
+        }*/
+        //i++;
+        //printf("nomeMusica = %s\nPlaylists = %d\n", nomeMusica(m), numeroPlaylistsMusica(m));
+    }
+    destroiPlaylistEMusicas(p);
     return 1;
 }
 

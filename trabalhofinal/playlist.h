@@ -79,7 +79,7 @@ Retorno: myIt - retorna o iterador criado para percorrer
 ***********************************************/
 iterador criaIteradorMusicasPlaylist(playlist p);
 
-
+int existeMusicaPlaylist(playlist p, musica m);
 /***********************************************
 destroiPlaylistEMusicas - funcao criada para destruir
                           uma playlist e todas as suas

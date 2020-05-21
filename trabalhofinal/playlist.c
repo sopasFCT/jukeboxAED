@@ -94,6 +94,8 @@ int adicionaMusicaPlaylist(playlist p, musica m, int pos, char* nomeMusica, int 
     if(pos > tamanhoSequencia(p -> musicas) + 2)
         return 0; //posicao nao existe
 */
+    if(tamanhoSequencia(p -> musicas) + 1 > p -> capacidade)  //se a alteracao aqui altera
+        return -1;
     tempoCorrentePlaylist = p -> duracaoPlaylist + duracaoMusica(m);
     if(tempoCorrentePlaylist > tempoMaximo)
         return 1; //nao consegue adicionar pois o tempo da playlist excede o tempo maximo permitido
@@ -107,8 +109,8 @@ int adicionaMusicaPlaylist(playlist p, musica m, int pos, char* nomeMusica, int 
 }
 
 int verificaCondicoesPlaylist(playlist p, int pos){
-    if(tamanhoSequencia(p -> musicas) + 1 > p -> capacidade)  //se a alteracao aqui altera
-        return -1; //nao consegue adicionar outra musica pois excede o numero musicas permitido
+    /*if(tamanhoSequencia(p -> musicas) + 1 > p -> capacidade)  //se a alteracao aqui altera
+        return -1; //nao consegue adicionar outra musica pois excede o numero musicas permitido*/
     if(pos > tamanhoSequencia(p -> musicas) + 2)
         return 0; //posicao nao existe
     return 1;
