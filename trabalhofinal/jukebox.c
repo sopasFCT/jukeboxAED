@@ -69,7 +69,7 @@ playlist criaPlaylistJukebox(jukebox j, char* nomePlaylist, int numeroMusicasLim
 }
 
 int existePlaylistJukebox(jukebox j, char* nomePlaylist){
-    playlist p;
+    //playlist p;
     /*iterador myIt = criaIteradorNomesPlaylists(j);
     while(temSeguinteIterador(myIt)){
         p = (playlist)seguinteIterador(myIt);
@@ -154,7 +154,7 @@ playlist devolvePlaylistJukebox(jukebox j, char *nomePlaylist){
 int destruirPlaylistJukebox(jukebox j, char* nomePlaylist){
     playlist p = removeElemDicionario(j -> playlists, nomePlaylist);
     int i = 1;
-    char *nome = removerMusicaPlaylist(p, i);
+    char *nome = " ";
     if(p == NULL)
         return 0;
     while(nome != NULL)

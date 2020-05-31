@@ -582,7 +582,7 @@ void adicionarMusicaPlaylist(jukebox j, playlist p, int posicao, int tempoDuraca
     musica m;
     //melhorar
     verificaPos = verificaCondicoesPlaylist(p, posicao);
-    if(verificaPos == -1) {
+    if(!verificaPos) {
         printf("Posicao invalida.\n");
         return;
     }
