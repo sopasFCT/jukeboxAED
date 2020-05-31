@@ -112,7 +112,7 @@ destroiPlaylistsEMusicas - funcao que destroi as playlists todas
                            da jukebox e todas as musicas dentro delas
 Parametros: j - apontador para a jukebox
 ***********************************************/
-void destroiPlaylistsEMusicas(jukebox j);
+void destroiPlaylistsEMusicasJukebox(jukebox j);
 
 /***********************************************
 destroiJukebox- funcao que destroi a jukebox recebida como parametro

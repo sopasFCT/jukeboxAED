@@ -11,12 +11,11 @@
 #define MAXNOME 100
 
 struct _playlist{
-    sequencia  musicas; //dicionario mudar
+    sequencia  musicas;
     char       nomePlaylist[MAXNOME];
-    //int        numeroMusicas; //numero de musicas que estao na playlist
-    int        duracaoPlaylist; //numero de segundos das musicas da playlist
-    int        numeroVezesTocada; //numero de vezes que a playlist foi tocada
-    int        capacidade;//numeroMusicasLimite declarado no inicio do programado
+    int        duracaoPlaylist;
+    int        numeroVezesTocada;
+    int        capacidade;
 };
 
 playlist criaPlaylist(int numeroMusicasLimite, char *nome){
@@ -71,11 +70,24 @@ void incrementarNumeroVezesTocada(playlist p){
     }
 }
 
+int devolvePosMusicaPlaylist(playlist p, musica m){
+    int pos = 1;
+    musica mDevolve;
+    iterador myIt = criaIteradorMusicasPlaylist(p);
+    while(temSeguinteIterador(myIt)){
+        mDevolve = seguinteIterador(myIt);
+        if(!strcmp(nomeMusica(mDevolve), nomeMusica(m)))
+            return pos;
+        pos++;
+    }
+    destroiIterador(myIt);
+    return (-1);
+}
+
 char* removerMusicaPlaylist(playlist p, int pos){
     musica m;
-    if(pos > tamanhoSequencia(p -> musicas)){
+    if(pos > tamanhoSequencia(p -> musicas))
         return NULL;
-    }
     m = removePosSequencia(p -> musicas, pos);
     if(m == NULL)
         return NULL;
@@ -87,13 +99,6 @@ char* removerMusicaPlaylist(playlist p, int pos){
 
 int adicionaMusicaPlaylist(playlist p, musica m, int pos, char* nomeMusica, int tempoMaximo){
     int tempoCorrentePlaylist;
-//    printf("pos = %d\n", pos);
-//    printf("tamanho = %d\n", tamanhoSequencia(p -> musicas));
-/*    if(tamanhoSequencia(p -> musicas) + 1 > p -> capacidade)  //se a alteracao aqui altera
-        return -1; //nao consegue adicionar outra musica pois excede o numero musicas permitido
-    if(pos > tamanhoSequencia(p -> musicas) + 2)
-        return 0; //posicao nao existe
-*/
     if(tamanhoSequencia(p -> musicas) + 1 > p -> capacidade)  //se a alteracao aqui altera
         return -1;
     tempoCorrentePlaylist = p -> duracaoPlaylist + duracaoMusica(m);
@@ -109,8 +114,6 @@ int adicionaMusicaPlaylist(playlist p, musica m, int pos, char* nomeMusica, int 
 }
 
 int verificaCondicoesPlaylist(playlist p, int pos){
-    /*if(tamanhoSequencia(p -> musicas) + 1 > p -> capacidade)  //se a alteracao aqui altera
-        return -1; //nao consegue adicionar outra musica pois excede o numero musicas permitido*/
     if(pos > tamanhoSequencia(p -> musicas) + 2)
         return 0; //posicao nao existe
     return 1;

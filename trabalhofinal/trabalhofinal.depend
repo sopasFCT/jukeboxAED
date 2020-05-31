@@ -50,7 +50,7 @@
 	<string.h>
 	"tuplo.h"
 
-1590082617 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\jukebox.c
+1590932276 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\jukebox.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -63,11 +63,11 @@
 	"playlist.h"
 	"jukebox.h"
 
-1590075135 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\playlist.h
+1590159777 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\playlist.h
 
-1589892234 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\jukebox.h
+1590252642 c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\jukebox.h
 
-1590074574 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\playlist.c
+1590932266 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\playlist.c
 	<stdlib.h>
 	<string.h>
 	<stdio.h>
@@ -76,7 +76,7 @@
 	"musica.h"
 	"playlist.h"
 
-1590084493 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\mainjukebox.c
+1590932373 source:c:\users\marco oliveira\desktop\fct 2º semestre\tfaed\trabalhofinal\mainjukebox.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>

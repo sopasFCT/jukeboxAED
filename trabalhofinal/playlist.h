@@ -26,27 +26,22 @@ int retornaDuracaoPlaylist(playlist p);
 int retornaNumeroVezesTocada(playlist p);
 
 /***********************************************
-adicionaMusicaPlaylist - funcao que tem como objetivo
-adicionar uma musica a uma playlist, verifica tambem se
-o tempo de duracao dela e excedido
-Parametros: p - playlist a qual vamos adicionar a musica
-            m - musica a adicionar a playlist
-            nomeMusica - nome da musica a adicionar
-            tempoDuracaoMaximoPlaylist - definido no arranque
-            para verificar se a adicionar a musica m nao vai ser
-            excedido o tempo maximo definido para cada playlist
-Retorno: 1 - se nao excedeu o tempo e foi adicionada
-         0 - excedeu o tempo e nao foi adicionada
-***********************************************/
-//int adicionaMusicaPlaylist(playlist p, musica m, char *nomeMusica, int tempoDuracaoMaximoPlaylist);
-
-/***********************************************
 incrementarNumeroVezesTocada - incrementar o numero de vezes
 que a playlist e todas as suas musicas foram tocadas
 Parametros: p - playlist a qual vamos incrementar nas musicas
                 o numero de vezesTocada
 ***********************************************/
 void incrementarNumeroVezesTocada(playlist p);
+
+/***********************************************
+devolvePosMusicaPlaylist - funcao para retornar a posicao de uma musica
+                           na sequencia de musicas de uma certa playlist
+Parametros: p - playlist na qual queremos procurar a musica
+            m - musica a procurar na sequencia de musicas da playlist
+Retorno: -1 - se nao foi encontrar a musica
+         pos - se encontrar a musica
+***********************************************/
+int devolvePosMusicaPlaylist(playlist p, musica m);
 
 /***********************************************
 removerMusicaPlaylist - remove uma musica de uma playlist
@@ -69,7 +64,17 @@ Retorno: 0 - nao consegue adicionar outra musica pois excede o tempo maximo
 ***********************************************/
 int adicionaMusicaPlaylist(playlist p, musica m, int pos, char* nomeMusica, int tempoMaximo);
 
+/***********************************************
+verificaCondicoesPlaylist - funcao para verificar se e possivel
+                            adicionar uma musica a playlist modify i
+Parametros: p- playlist a qual pretendemos adicionar uma musica
+            pos- posicao da sequencia a qual pretendemos adicionar
+                 uma musica a sequencia
+Retorno: 0- nao e possivel adicionar uma musica na posicao de parametro
+         1- e possivel adicionar uma musica na posicao de parametro
+***********************************************/
 int verificaCondicoesPlaylist(playlist p, int pos);
+
 /***********************************************
 criaIterador - funcao para criar iterador com as musicas de
                determinada playlist
@@ -79,7 +84,16 @@ Retorno: myIt - retorna o iterador criado para percorrer
 ***********************************************/
 iterador criaIteradorMusicasPlaylist(playlist p);
 
+/**********************************************
+existeMusicaPlaylist - funcao que recebe uma certa musica e avalia
+                       se ela esta presente numa determinada playlist ou nao
+Parametros: p - playlist que vai verificar se existe uma musica
+            m - musica a verificar se existe na playlist p
+Retorno: 1- se existe
+         0- se nao existe
+***********************************************/
 int existeMusicaPlaylist(playlist p, musica m);
+
 /***********************************************
 destroiPlaylistEMusicas - funcao criada para destruir
                           uma playlist e todas as suas

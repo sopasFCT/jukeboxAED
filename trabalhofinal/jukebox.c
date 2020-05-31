@@ -4,6 +4,8 @@
 
 #define MAXPLAYLISTS 1000
 #define MAXMUSICAS   3000
+#define MAXNOME      100
+#define MAXGENERO    30
 
 #include "iterador.h"
 #include "chaves.h"
@@ -39,32 +41,43 @@ jukebox criaJukebox(){
 int novaMusicaJukebox(jukebox j, char *nomeMusica, char *interprete, char *genero, int anoLancamento, int duracao){
     musica m;
     m = criaMusica(nomeMusica, interprete, genero, anoLancamento, duracao);
-    if(adicionaElemDicOrdenado(j -> musicas, nomeMusica, m))//tag
-        return 1;
-    else //seria engracado eu destruir aqui m
+    if(m == NULL){
+        free(m);
         return 0;
+    }
+    if(adicionaElemDicOrdenado(j -> musicas, nomeMusica, m))
+        return 1;
+    else{
+        free(m);
+        return 0;
+    }
 }
 
-//esta funcao tambem adiciona a playlist p a sequencia criada de playlists
 playlist criaPlaylistJukebox(jukebox j, char* nomePlaylist, int numeroMusicasLimite){
     playlist p;
     p = criaPlaylist(numeroMusicasLimite, nomePlaylist);
-    if(p == NULL)
+    if(p == NULL){
+        free(p);
         return NULL;
+    }
     if(adicionaElemDicionario(j -> playlists, nomePlaylist, p))
         return p;
-    else
+    else{
+        free(p);
         return NULL;
+    }
 }
 
 int existePlaylistJukebox(jukebox j, char* nomePlaylist){
     playlist p;
-    iterador myIt = criaIteradorNomesPlaylists(j);
+    /*iterador myIt = criaIteradorNomesPlaylists(j);
     while(temSeguinteIterador(myIt)){
         p = (playlist)seguinteIterador(myIt);
         if(!strcmp(retornaNomePlaylist(p), nomePlaylist))
                 return 1;
-    }
+    }*/
+    if(existeElemDicionario(j -> playlists, nomePlaylist))
+        return 1;
     return 0;
 }
 
@@ -103,10 +116,20 @@ iterador criaIteradorPlaylists(jukebox j){
 }
 
 int apagarMusicaJukebox(jukebox j, char *nomeMusica){
+    iterador myIt = criaIteradorPlaylists(j);
+    playlist p;
+    int pos;
     if(existeElemDicOrdenado(j -> musicas, nomeMusica)){
         musica m = removeElemDicOrdenado(j -> musicas, nomeMusica);
         if(m == NULL)
             return 0;
+        while(temSeguinteIterador(myIt)){
+            p = (playlist)seguinteIterador(myIt);
+            while(existeMusicaPlaylist(p, m)){
+                pos = devolvePosMusicaPlaylist(p, m);
+                removerMusicaPlaylist(p, pos);
+            }
+        }
         destroiMusica(m);
         return 1;
     }
@@ -128,28 +151,14 @@ playlist devolvePlaylistJukebox(jukebox j, char *nomePlaylist){
     return p;
 }
 
-int destruirPlaylistJukebox(jukebox j, char* nomePlaylist){ //ver se precisa receber playlist parametro
+int destruirPlaylistJukebox(jukebox j, char* nomePlaylist){
     playlist p = removeElemDicionario(j -> playlists, nomePlaylist);
-    //musica m;
     int i = 1;
-    char *nome;
+    char *nome = removerMusicaPlaylist(p, i);
     if(p == NULL)
         return 0;
-    //iterador myIt = criaIteradorMusicasPlaylist(p);
-    while(nome != NULL){
+    while(nome != NULL)
         nome = removerMusicaPlaylist(p, i);
-        //m = (musica)seguinteIterador(myIt);
-        /*if(removerMusicaPlaylist(p, i) != NULL)
-            i--;*/
-        /*if(existeMusicaPlaylist(p, m) == 0){ && retornaNumeroMusicasPlaylist(p)!= 0
-            decrementaNumeroPlaylistsPresente(m);
-            printf("decrementa a %s\n", nomeMusica(m));
-            if(numeroPlaylistsMusica(m) < 0)
-                incrementaNumeroPlaylistsPresente(m);
-        }*/
-        //i++;
-        //printf("nomeMusica = %s\nPlaylists = %d\n", nomeMusica(m), numeroPlaylistsMusica(m));
-    }
     destroiPlaylistEMusicas(p);
     return 1;
 }
@@ -158,7 +167,7 @@ void destroiJukebox(jukebox j){
     free(j);
 }
 
-void destroiPlaylistsEMusicas(jukebox j){
+void destroiPlaylistsEMusicasJukebox(jukebox j){
     destroiDicEElems(j -> playlists, (void*)destroiGenPlaylist);
     destroiDicOrdEElems(j -> musicas, (void*)destroiGenMusica);
 }
